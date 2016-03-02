@@ -1,0 +1,2 @@
+class BootsController < ApplicationController
+end
