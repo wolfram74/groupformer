@@ -2,36 +2,36 @@
   <h2>New Cohort form</h2>
   <form>
     <h3>Instructor email</h3>
-      <input type='email' placeholder='person@devbootcamp.com'></input>
+      <input name='instructor_email'type='email' placeholder='person@devbootcamp.com'></input>
     <h3>Boots</h3>
-      <ul>
+      <ul id='bootList'>
         <li>
           <span>
-            <input type='email' placeholder='person@devbootcamp.com'></input>
+            <input name='boot0[email]' type='email' placeholder='person@devbootcamp.com'></input>
           </span>
           <span>
-            <input type='text' placeholder='person surname'></input>
+            <input name='boot0[email]' type='text' placeholder='person surname'></input>
           </span>
         </li>
-        <input type='button' value='More boots'>
       </ul>
+      <input type='button' id='addBoot' value='More boots' class='newEntry'>
       <h4>CSV bulk entry</h4>
       <textarea rows='10' cols='80'></textarea>
     <h3>Projects</h3>
-      <ul>
+      <ul id='projectList'>
         <li>
           <span>
-            <input type='text' placeholder='Animals with hats'></input>
+            <input name='project0[name]' type='text' placeholder='Animals with hats'></input>
           </span>
           <span>
-            <input type='text' placeholder='boot number 4'></input>
+            <input name='project0[proposer]' type='text' placeholder='boot number 4'></input>
           </span>
           <span>
-            <input type='text' placeholder='The primier hatted animal search engine'></input>
+            <input name='project0[description]' type='text' placeholder='The primier hatted animal search engine'></input>
           </span>
         </li>
-        <input type='button' value='More Projects'>
       </ul>
+      <input type='button' id='addProject' value='More Projects' class='newEntry'>
       <h4>CSV bulk entry</h4>
       <textarea rows='10' cols='80'></textarea>
     <input type='submit'>
@@ -43,3 +43,24 @@
   <h3>Boots</h3>
   <h3>Projects</h3>
 </div>
+
+<li class='template' id='bootTemplate'>
+  <span>
+    <input type='email' placeholder='person@devbootcamp.com'></input>
+  </span>
+  <span>
+    <input type='text' placeholder='person surname'></input>
+  </span>
+</li>
+
+<li class='template' id='projectTemplate'>
+  <span>
+    <input type='text' placeholder='Animals with hats'></input>
+  </span>
+  <span>
+    <input type='text' placeholder='boot number 4'></input>
+  </span>
+  <span>
+    <input type='text' placeholder='The primier hatted animal search engine'></input>
+  </span>
+</li>
