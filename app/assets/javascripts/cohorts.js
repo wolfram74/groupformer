@@ -17,6 +17,7 @@ var cohort = (function(){
     var formArray = $form.serializeArray()
     API.resetCache()
     API.fillCache(formArray)
+    API.renderCache()
     console.log(API.formCache )
   };
   API.resetCache = function(){
@@ -86,6 +87,23 @@ var cohort = (function(){
     $copy.find('input').eq(1).attr('name', prefix+'[proposer]')
     $copy.find('input').eq(2).attr('name', prefix+'[description]')
     $('#projectList').append($copy)
+  }
+  API.renderCache = function(){
+    $('#instructorState').find('span').text(API.formCache.instructorEmail)
+    var $boots = $('#bootState').find('ul')
+    $boots.empty()
+    for(var bid = 0; bid < API.formCache.boots.length; bid++){
+      $boots.append(
+        $('<li></li>').text(API.formCache.boots[bid].join(', '))
+        )
+    }
+    var $projects = $('#projectState').find('ul')
+    $projects.empty()
+    for(var bid = 0; bid < API.formCache.projects.length; bid++){
+      $projects.append(
+        $('<li></li>').text(API.formCache.projects[bid].join(', '))
+        )
+    }
   }
   return API
   })()
