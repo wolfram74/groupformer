@@ -1,0 +1,19 @@
+<%= @cohort.instructor_email %>
+<table>
+  <tr>
+    <td>Boot</td>
+    <% @project_names.each do |project| %>
+      <td><%= project %></td>
+    <% end %>
+  </tr>
+  <% @boot_names.each do |boot| %>
+    <tr>
+      <td class = <%= 'abstained' unless @preferences[boot].keys.any? %> >
+        <%= boot %>
+      </td>
+      <% @project_names.each do |project| %>
+        <td><%= @preferences[boot][project] || (@project_names.length + 1) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

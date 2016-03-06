@@ -8,8 +8,12 @@ div.left{
 
 div.right{
   width: 45%;
-  float: right
+  float: right;
 }
 .template{
   display: none;
+}
+
+td.abstained{
+  background-color: #fcc;
 }

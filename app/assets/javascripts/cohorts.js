@@ -3,7 +3,16 @@ $('document').ready(function(){
   console.log('cohorts recognized')
   $('form').on('change keyup', cohort.formHandler)
   $('.newEntry').on('click', cohort.buttonHandler)
+  $('form').on('submit', cohort.submitHandler)
 })
+
+if(typeof(String.prototype.trim) === "undefined")
+{
+    String.prototype.trim = function()
+    {
+        return String(this).replace(/^\s+|\s+$/g, '');
+    };
+}
 
 var cohort = (function(){
   var API = {}
@@ -18,7 +27,6 @@ var cohort = (function(){
     API.resetCache()
     API.fillCache(formArray)
     API.renderCache()
-    console.log(API.formCache )
   };
   API.resetCache = function(){
     API.formCache = {
@@ -32,13 +40,13 @@ var cohort = (function(){
     var project = []
     for(var i=0; i < formData.length; i++){
       if(formData[i].name.match(/boot\d/)){
-        boot.push(formData[i].value)
+        boot.push(formData[i].value.trim())
         if( boot.length ==2){
           API.formCache.boots.push(boot)
           boot =[]
         }
       }else if(formData[i].name.match(/project\d/)){
-        project.push(formData[i].value)
+        project.push(formData[i].value.trim())
         if( project.length ==3){
           API.formCache.projects.push(project)
           project =[]
@@ -60,6 +68,9 @@ var cohort = (function(){
     var lines = string.split('\n')
     for(var i = 0; i< lines.length; i++){
       lines[i] = lines[i].split(',')
+      for(var j =0; j<lines[i].length; j++){
+        lines[i][j] = lines[i][j].trim()
+      }
     }
     return lines
   }
@@ -105,5 +116,20 @@ var cohort = (function(){
         )
     }
   }
+  API.submitHandler = function(event){
+    event.preventDefault()
+    console.log(API.formCache);
+    // $(event.target)
+    // debugger
+    var request = $.ajax({
+      url: '/cohorts',
+      type: 'post',
+      data: API.formCache
+    })
+    request.done(function(response){
+      console.log('success')
+      console.log(response)
+    })
+  };
   return API
   })()
