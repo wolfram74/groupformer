@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   resources :cohorts, only: [:new, :create, :show]
+  resources :boots, only: :show
+  post 'boots/:id/vote' => 'boots#vote'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

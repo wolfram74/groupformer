@@ -3,7 +3,10 @@
 <form>
   <% @projects.shuffle.each do |project| %>
     <div class='choice'>
-      <select name=<%= project.name %>>
+      <select
+        name=<%= 'projects[%d]' % project.id %>
+        value=<%= @preferences[project.name] || default %>
+      >
         <option value = <%= default %>><%= default %></option>
         <% @projects.length.times do |int| %>
           <option value = <%= int+1 %>><%= int+1 %></option>
@@ -12,6 +15,7 @@
       <span>name: <%= project.name %> </span>
       <span>proposed by: <%= project.boot.name %></span>
       <span>description: <%= project.description %></span>
-    <div>
+    </div>
   <% end %>
+  <input type='submit' value='vote'>
 </form>
