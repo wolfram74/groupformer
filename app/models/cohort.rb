@@ -2,6 +2,14 @@ class Cohort < ActiveRecord::Base
   has_many :boots
   before_create :set_slug
 
+  def projects
+    projects = []
+    self.boots.each do |boot|
+      projects += boot.projects
+    end
+    projects
+  end
+
   def preference_matrix
     preferences = {}
     boots = self.boots

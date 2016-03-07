@@ -3,6 +3,14 @@ class Boot < ActiveRecord::Base
   has_many :preferences
   has_many :projects
   before_create :set_slug
+
+  def preference_hash
+    hash = {}
+    self.preferences.each do |preference|
+      hash[preference.project.name] = preference.rank
+    end
+    return hash
+  end
   private
   def set_slug
     return if self.slug.present?

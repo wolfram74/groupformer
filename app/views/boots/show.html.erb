@@ -1,0 +1,17 @@
+<%= @boot.name %>
+<% default = @projects.length + 1 %>
+<form>
+  <% @projects.shuffle.each do |project| %>
+    <div class='choice'>
+      <select name=<%= project.name %>>
+        <option value = <%= default %>><%= default %></option>
+        <% @projects.length.times do |int| %>
+          <option value = <%= int+1 %>><%= int+1 %></option>
+        <% end %>
+      </select>
+      <span>name: <%= project.name %> </span>
+      <span>proposed by: <%= project.boot.name %></span>
+      <span>description: <%= project.description %></span>
+    <div>
+  <% end %>
+</form>
